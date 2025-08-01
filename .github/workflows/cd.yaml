@@ -6,7 +6,8 @@ concurrency:
 
 on:
   push:
-    branches: [ "release/**" ]
+    tags:
+      - 'v*'
 
 jobs:
   build-and-deploy:
