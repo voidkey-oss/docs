@@ -1,36 +1,137 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Welcome to Voidkey
+description: Zero-trust credential broker for secure cloud access
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Eliminate long-lived secrets with dynamic, OIDC-based credential minting
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/voidkey_white_no_bg.svg
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Get Started
+      link: /getting-started/quickstart/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/voidkey-oss
       icon: external
-      variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## What is Voidkey?
+
+Voidkey is a **zero-trust credential broker** that eliminates the need for long-lived secrets in modern workflows. It dynamically mints short-lived, scoped credentials using OIDC-based authentication, creating a secure bridge between identity providers and cloud resources.
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Zero Trust Architecture" icon="shield">
+		No shared secrets between clients and cloud providers. Each component authenticates independently.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Dynamic Credentials" icon="refresh">
+		Generate temporary credentials on-demand with configurable expiration times.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="OIDC Integration" icon="key">
+		Native support for GitHub Actions, Auth0, Okta, Keycloak, and more identity providers.
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Multi-Cloud Support" icon="cloud">
+		Works with AWS, GCP, Azure, MinIO, and other cloud providers out of the box.
+	</Card>
+</CardGrid>
+
+## Key Features
+
+- **🔐 True Zero-Trust**: Separate authentication for clients and broker with no shared secrets
+- **🔑 Key-Based Access**: Fine-grained permission control with named credential keys
+- **🚀 Production Ready**: Enterprise-grade NestJS server with comprehensive security features
+- **🛠️ Developer Friendly**: Easy-to-use CLI and well-documented REST API
+- **📦 Extensible**: Plugin architecture for custom identity and cloud providers
+- **🧪 Well Tested**: Comprehensive test suite with full coverage
+
+## Use Cases
+
+### CI/CD Pipelines
+Eliminate hardcoded secrets in your CI/CD pipelines. Voidkey integrates natively with GitHub Actions, GitLab CI, and other platforms to provide secure, temporary credentials for deployments.
+
+### Development Workflows
+Provide developers with time-limited access to cloud resources without distributing long-lived credentials. Perfect for local development and testing scenarios.
+
+### Microservices Authentication
+Enable secure service-to-service communication with dynamic credential generation based on service identity.
+
+### Compliance & Auditing
+Meet security compliance requirements with comprehensive audit logging and credential lifecycle tracking.
+
+## Quick Example
+
+```bash
+# Request temporary AWS credentials
+voidkey mint --keys AWS_DEPLOYMENT
+
+# Use in your workflow
+export $(voidkey mint --keys AWS_DEPLOYMENT --output env)
+aws s3 cp build/ s3://my-bucket/ --recursive
+```
+
+## Architecture Overview
+
+```
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   Client    │──▶│  Client IdP │    │   Voidkey   │──▶│  Broker IdP │    │   Access    │
+│     CLI     │    │  (Auth0,    │    │   Broker    │    │ (Keycloak,  │    │  Provider   │
+│             │    │ GitHub, etc)│    │             │    │  Okta, etc) │    │    (STS)    │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+       │                   │                   │                   │                   │
+       │ 1. Get client     │                   │                   │                   │
+       │    OIDC token     │                   │                   │                   │
+       │◀─────────────────│                   │                   │                   │
+       │                                       │                   │                   │
+       │ 2. Request credentials with token     │                   │                   │
+       │─────────────────────────────────────▶│                   │                   │
+       │                                       │                   │                   │
+       │                              3. Validate client token     │                   │
+       │                                       │                   │                   │
+       │                                       │ 4. Get broker     │                   │
+       │                                       │    OIDC token     │                   │
+       │                                       │◀─────────────────│                   │
+       │                                       │                                       │
+       │                                       │ 5. Mint credentials with broker token │
+       │                                       │─────────────────────────────────────▶│
+       │                                       │                                       │
+       │                                       │ 6. Return temp credentials            │
+       │                                       │◀─────────────────────────────────────│
+       │                                       │                                       │
+       │ 7. Return temp credentials to client  │                                       │
+       │◀─────────────────────────────────────│                                       │
+       │                                                                               │
+       │ 8. Use credentials for operations                                             │
+       │─────────────────────────────────────────────────────────────────────────────▶│
+```
+
+1. **Client gets OIDC token** from their identity provider (GitHub Actions, Auth0, etc.)
+2. **Client requests credentials** from Voidkey broker with OIDC token and key names
+3. **Broker validates client token** against the client's identity provider JWKS
+4. **Broker gets its own token** from the broker's identity provider for authentication
+5. **Broker mints credentials** using its token to authenticate with cloud provider STS
+6. **Cloud provider returns** temporary, scoped credentials to the broker
+7. **Broker returns credentials** to the client with expiration information
+8. **Client uses credentials** for authorized operations against cloud resources
+
+## Next Steps
+
+<CardGrid>
+	<Card title="Quick Start" icon="rocket">
+		Get up and running with Voidkey in minutes using our Docker sandbox environment.
+		[Start Here →](/getting-started/quickstart/)
+	</Card>
+	<Card title="Architecture" icon="puzzle">
+		Understand the components and security model behind Voidkey.
+		[Learn More →](/architecture/overview/)
+	</Card>
+	<Card title="Configuration" icon="setting">
+		Configure identity providers, access providers, and permissions.
+		[Configure →](/configuration/guide/)
+	</Card>
+	<Card title="API Reference" icon="document">
+		Explore the REST API endpoints and integration options.
+		[View API →](/api/rest/)
 	</Card>
 </CardGrid>
