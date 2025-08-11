@@ -1,0 +1,8 @@
+/* Hero image theme switching */
+.hero img {
+  content: url('/voidkey_black_no_bg.svg');
+}
+
+[data-theme="dark"] .hero img {
+  content: url('/voidkey_white_no_bg.svg');
+}

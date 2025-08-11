@@ -1,0 +1,53 @@
+---
+import voidkeyBlack from '../assets/voidkey_black_no_bg.svg?url';
+import voidkeyWhite from '../assets/voidkey_white_no_bg.svg?url';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`theme-logo ${className}`}>
+  <img 
+    src={voidkeyBlack} 
+    alt="Voidkey Logo" 
+    class="logo-light"
+  />
+  <img 
+    src={voidkeyWhite} 
+    alt="Voidkey Logo" 
+    class="logo-dark"
+  />
+</div>
+
+<style>
+  .theme-logo {
+    display: inline-block;
+  }
+  
+  .logo-light,
+  .logo-dark {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Show light logo by default */
+  .logo-light {
+    display: block;
+  }
+  
+  .logo-dark {
+    display: none;
+  }
+  
+  /* Switch to dark logo in dark theme */
+  :global([data-theme="dark"]) .logo-light {
+    display: none;
+  }
+  
+  :global([data-theme="dark"]) .logo-dark {
+    display: block;
+  }
+</style>
