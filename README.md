@@ -102,7 +102,7 @@ We welcome contributions to improve the documentation!
 
 ## 📄 License
 
-This documentation is part of the Voidkey project. See the [LICENSE](LICENSE) file for details.
+This documentation is part of the Voidkey project and is licensed under the Apache 2.0 License.
 
 ## 🔗 Links
 
