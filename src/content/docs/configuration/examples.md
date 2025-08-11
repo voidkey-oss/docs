@@ -92,18 +92,20 @@ accessProviders:
     type: "aws-sts"
     region: "us-east-1"
   
-  # GCP for analytics
+  # GCP for analytics (Coming Soon)
+  # Note: GCP support is currently under development
   - name: "gcp-analytics"
     type: "gcp"
     projectId: "myorg-analytics"
   
-  # Azure for legacy systems
+  # Azure for legacy systems (Coming Soon)
+  # Note: Azure support is currently under development
   - name: "azure-legacy"
     type: "azure"
     tenantId: "12345678-1234-1234-1234-123456789012"
 
 clientIdentities:
-  # GitHub Actions can access AWS and GCP
+  # GitHub Actions can access AWS (and GCP when available)
   - subject: "repo:myorg/main-app:ref:refs/heads/main"
     idp: "github-actions"
     keys:
@@ -112,21 +114,21 @@ clientIdentities:
         roleArn: "arn:aws:iam::123456789012:role/MainAppDeploy"
         duration: 3600
       
-      GCP_ANALYTICS:
-        provider: "gcp-analytics"
-        serviceAccount: "analytics@myorg-analytics.iam.gserviceaccount.com"
-        duration: 1800
-        scopes:
-          - "https://www.googleapis.com/auth/bigquery"
+      # GCP_ANALYTICS (Coming Soon - example configuration):
+      #   provider: "gcp-analytics"
+      #   serviceAccount: "analytics@myorg-analytics.iam.gserviceaccount.com"
+      #   duration: 1800
+      #   scopes:
+      #     - "https://www.googleapis.com/auth/bigquery"
   
   # GitLab CI for Azure legacy systems
   - subject: "project_path:myorg/legacy-app:ref:main:ref_type:branch"
     idp: "gitlab-ci"
     keys:
-      AZURE_DEPLOY:
-        provider: "azure-legacy"
-        clientId: "legacy-app-client-id"
-        duration: 2400
+      # AZURE_DEPLOY (Coming Soon - example configuration):
+      #   provider: "azure-legacy"
+      #   clientId: "legacy-app-client-id"
+      #   duration: 2400
 ```
 
 ## Development Environment
@@ -224,7 +226,8 @@ accessProviders:
     type: "aws-sts"
     region: "us-west-2"
   
-  # GCP for data platform
+  # GCP for data platform (Coming Soon)
+  # Note: GCP support is currently under development
   - name: "gcp-data"
     type: "gcp"
     projectId: "myorg-data-platform"
@@ -253,17 +256,17 @@ clientIdentities:
         roleArn: "arn:aws:iam::dev-account:role/DeveloperFull"
         duration: 7200
   
-  # Data team - GCP access
-  - subject: "repo:myorg/data-pipeline:ref:refs/heads/main"
-    idp: "github-enterprise"
-    keys:
-      GCP_DATA_PROCESSOR:
-        provider: "gcp-data"
-        serviceAccount: "pipeline@myorg-data-platform.iam.gserviceaccount.com"
-        duration: 3600
-        scopes:
-          - "https://www.googleapis.com/auth/bigquery"
-          - "https://www.googleapis.com/auth/dataflow"
+  # Data team - GCP access (Coming Soon - example configuration)
+  # - subject: "repo:myorg/data-pipeline:ref:refs/heads/main"
+  #   idp: "github-enterprise"
+  #   keys:
+  #     GCP_DATA_PROCESSOR:
+  #       provider: "gcp-data"
+  #       serviceAccount: "pipeline@myorg-data-platform.iam.gserviceaccount.com"
+  #       duration: 3600
+  #       scopes:
+  #         - "https://www.googleapis.com/auth/bigquery"
+  #         - "https://www.googleapis.com/auth/dataflow"
   
   # Operations team - monitoring access
   - subject: "group:ops-team"

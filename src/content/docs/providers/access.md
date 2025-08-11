@@ -9,6 +9,15 @@ This page details all access providers supported by Voidkey for minting temporar
 
 Access providers integrate with cloud services to mint temporary, scoped credentials. Each provider implements the common `AccessProvider` interface while handling provider-specific authentication and credential formats.
 
+### Provider Status
+
+| Provider | Status | Description |
+|----------|--------|-------------|
+| **AWS STS** | ✅ Production Ready | Full support for AWS credential minting |
+| **MinIO** | ✅ Production Ready | S3-compatible storage with STS |
+| **Google Cloud** | 🚧 Coming Soon | Currently under development |
+| **Azure** | 🚧 Coming Soon | Currently under development |
+
 ## AWS STS
 
 AWS Security Token Service provides temporary credentials for AWS resources.
@@ -139,7 +148,9 @@ AWS_LIMITED_ACCESS:
 }
 ```
 
-## Google Cloud Platform
+## Google Cloud Platform (Coming Soon)
+
+> **🚧 Work in Progress:** Google Cloud support is currently under development. The configuration and examples below show the planned implementation for the upcoming release.
 
 Google Cloud uses service account impersonation for temporary credentials.
 
@@ -224,7 +235,9 @@ gcloud iam service-accounts add-iam-policy-binding \
 }
 ```
 
-## Azure Active Directory
+## Azure Active Directory (Coming Soon)
+
+> **🚧 Work in Progress:** Azure support is currently under development. The configuration and examples below show the planned implementation for the upcoming release.
 
 Azure AD provides managed identity and service principal authentication.
 

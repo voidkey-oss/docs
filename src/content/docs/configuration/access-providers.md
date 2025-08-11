@@ -9,10 +9,12 @@ This guide covers configuring access providers that mint temporary credentials f
 
 Voidkey includes built-in support for:
 
-- **AWS STS** - Amazon Web Services Security Token Service
-- **MinIO** - S3-compatible object storage with STS
-- **Google Cloud** - Google Cloud Platform service account impersonation
-- **Azure** - Microsoft Azure identity services
+- **AWS STS** - Amazon Web Services Security Token Service ✅ **Available**
+- **MinIO** - S3-compatible object storage with STS ✅ **Available**
+- **Google Cloud** - Google Cloud Platform service account impersonation 🚧 **Coming Soon**
+- **Azure** - Microsoft Azure identity services 🚧 **Coming Soon**
+
+> **Note:** Azure and GCP support are currently under active development. AWS and MinIO providers are fully functional and production-ready.
 
 ## Basic Configuration
 
@@ -200,7 +202,9 @@ export MINIO_IDENTITY_OPENID_CLAIM_NAME="policy"
 minio server /data --console-address ":9001"
 ```
 
-## Google Cloud Provider
+## Google Cloud Provider (Coming Soon)
+
+> **🚧 Work in Progress:** Google Cloud support is currently under development and will be available in an upcoming release. The configuration examples below show the planned implementation.
 
 Configure Google Cloud for service account impersonation:
 
@@ -278,7 +282,9 @@ gcloud iam service-accounts add-iam-policy-binding \
   --member="principalSet://iam.googleapis.com/projects/PROJECT-NUMBER/locations/global/workloadIdentityPools/voidkey-pool/attribute.repository/myorg/myapp"
 ```
 
-## Azure Provider
+## Azure Provider (Coming Soon)
+
+> **🚧 Work in Progress:** Azure support is currently under development and will be available in an upcoming release. The configuration examples below show the planned implementation.
 
 Configure Azure Active Directory for managed identity:
 

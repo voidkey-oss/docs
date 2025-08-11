@@ -48,10 +48,10 @@ Voidkey's architecture is built on zero-trust principles:
 ### 3. Cloud Providers
 
 **Access Providers**
-- AWS STS
-- Google Cloud IAM
-- Azure AD
-- MinIO STS
+- AWS STS ✅
+- Google Cloud IAM 🚧 (Coming Soon)
+- Azure AD 🚧 (Coming Soon)
+- MinIO STS ✅
 - Custom provider implementations
 
 ## Data Flow
