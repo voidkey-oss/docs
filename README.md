@@ -1,49 +1,112 @@
-# Starlight Starter Kit: Basics
+# Voidkey Documentation
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
+This repository contains the documentation website for Voidkey, a zero-trust credential broker system. The documentation is built using [Astro](https://astro.build/) and [Starlight](https://starlight.astro.build/).
+
+## 🔗 Live Documentation
+
+Visit the live documentation at: [docs.voidkey.com](https://docs.voidkey.com) *(coming soon)*
+
+## 📚 About Voidkey
+
+Voidkey is a zero-trust credential broker that eliminates the need for long-lived secrets by dynamically minting short-lived, scoped credentials using OIDC-based authentication.
+
+**Key Components:**
+- **[broker-core](https://github.com/voidkey-oss/broker-core)** - TypeScript core library
+- **[broker-server](https://github.com/voidkey-oss/broker-server)** - NestJS HTTP server
+- **[cli](https://github.com/voidkey-oss/cli)** - Go CLI client
+- **[sandbox](https://github.com/voidkey-oss/sandbox)** - Docker development environment
+
+## 🚀 Development
+
+### Prerequisites
+- Node.js 18+ 
+- npm
+
+### Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/voidkey-oss/docs.git
+cd docs
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
-npm create astro@latest -- --template starlight
-```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The documentation will be available at `http://localhost:4321`
 
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+### Project Structure
 
 ```
 .
-├── public/
+├── public/                 # Static assets (favicons, logos)
 ├── src/
-│   ├── assets/
+│   ├── assets/            # Images and static assets for content
+│   ├── components/        # Custom Astro components
 │   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
+│   │   └── docs/          # Documentation content (.md/.mdx files)
+│   ├── styles/            # Custom CSS styles
+│   └── content.config.ts  # Content configuration
+├── astro.config.mjs       # Astro configuration
 ├── package.json
 └── tsconfig.json
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+### Content Organization
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+Documentation content is organized in `src/content/docs/`:
 
-Static assets, like favicons, can be placed in the `public/` directory.
+- `getting-started/` - Installation and quickstart guides
+- `architecture/` - System architecture and components
+- `configuration/` - Identity and access provider setup
+- `api/` - REST API reference and authentication
+- `cli/` - CLI usage and commands
+- `deployment/` - Production deployment guides
+- `development/` - Contributing and development setup
+- `examples/` - Usage examples and CI/CD integration
+- `providers/` - Identity and access provider guides
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
+### Available Commands
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm install`             | Install dependencies                            |
+| `npm run dev`             | Start development server at `localhost:4321`    |
+| `npm run build`           | Build production site to `./dist/`              |
+| `npm run preview`         | Preview production build locally                 |
+| `npm run astro ...`       | Run Astro CLI commands                          |
+| `npm run astro check`     | Check for errors in content                     |
 
-## 👀 Want to learn more?
+## 📝 Contributing
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+We welcome contributions to improve the documentation!
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b improve-docs`)
+3. Make your changes
+4. Test locally with `npm run dev`
+5. Submit a pull request
+
+### Writing Guidelines
+
+- Use clear, concise language
+- Include code examples where helpful
+- Test all commands and examples
+- Follow the existing content structure
+- Add images to `src/assets/` when needed
+
+## 📄 License
+
+This documentation is part of the Voidkey project. See the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- [Voidkey Organization](https://github.com/voidkey-oss)
+- [Report Issues](https://github.com/voidkey-oss/.github/issues/new/choose)
+- [Security Policy](https://github.com/voidkey-oss/.github/blob/main/SECURITY.md)
+- [Contributing Guidelines](https://github.com/voidkey-oss/.github/blob/main/CONTRIBUTING.md)
