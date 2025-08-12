@@ -6,7 +6,7 @@ This repository contains the documentation website for Voidkey, a zero-trust cre
 
 ## 🔗 Live Documentation
 
-Visit the live documentation at: [docs.voidkey.com](https://docs.voidkey.com) *(coming soon)*
+Visit the live documentation at: [docs.voidkey.com](https://docs.voidkey.com)
 
 ## 📚 About Voidkey
 
